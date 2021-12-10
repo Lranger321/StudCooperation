@@ -1,0 +1,16 @@
+spring.datasource.url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/stud_cooperation?allowPublicKeyRetrieval=true&useUnicode=true&serverTimezone=UTC&characterEncoding=UTF-8&useSSL=false}
+spring.datasource.username: ${DATABASE_USER:postgres}
+spring.datasource.password: ${DATABASE_PASSWORD:root}
+spring.jpa.database-platform: org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.show-sql: false
+spring.jpa.hibernate.ddl-auto: none
+spring.datasource.hikari.maxLifeTime: 60000
+spring.jpa.properties.hibernate.temp.use_jdbc_metadata_defaults: false
+spring.liquibase.enabled: true
+spring.liquibase.change-log: changelog-master.xml
+spring.jackson.serialization-inclusion: non_null
+
+spring.servlet.multipart.enabled: true
+spring.servlet.multipart.max-file-size: 256KB
+spring.servlet.multipart.max-request-size: 256KB
+
