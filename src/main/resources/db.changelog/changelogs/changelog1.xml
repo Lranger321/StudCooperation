@@ -6,20 +6,6 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
     <changeSet author="nkozlov" id="createTables">
-        <createTable tableName="students">
-            <column name="id" type="bigint" autoIncrement="true">
-                <constraints nullable="false" primaryKey="true"/>
-            </column>
-            <column name="name" type="varchar(250)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="student_group" type="varchar(250)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="created_at" type="timestamp">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
         <createTable tableName="exam">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
@@ -28,27 +14,13 @@
                 <constraints nullable="false"/>
             </column>
             <column name="mark" type="varchar(250)"/>
-            <column name="student_id" type="bigint">
+            <column name="student_group" type="varchar(250)">
                 <constraints nullable="true"/>
             </column>
             <column name="created_at" type="timestamp">
                 <constraints nullable="false"/>
             </column>
-        </createTable>
-        <createTable tableName="pass">
-            <column name="id" type="bigint" autoIncrement="true">
-                <constraints nullable="false" primaryKey="true"/>
-            </column>
-            <column name="name" type="varchar(250)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="is_passed" type="boolean">
-                <constraints nullable="false"/>
-            </column>
-            <column name="student_id" type="bigint">
-                <constraints nullable="true"/>
-            </column>
-            <column name="created_at" type="timestamp">
+            <column name="semester" type="int">
                 <constraints nullable="false"/>
             </column>
         </createTable>

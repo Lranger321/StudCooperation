@@ -24,11 +24,12 @@ public class Exam {
     @Column(name = "mark", nullable = false)
     private String mark;
 
-    @ManyToOne
-    @JoinColumn(name = "student_id")
-    private Student student;
+    @Column(name = "student_group", nullable = false)
+    private String group;
 
     @Column(name = "created_at", nullable = false)
     private OffsetDateTime createdAt;
 
+    @Column(name = "semester", nullable = false)
+    private int semester;
 }

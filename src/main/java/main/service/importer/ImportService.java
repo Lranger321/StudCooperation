@@ -28,15 +28,13 @@ public class ImportService {
     private final Importer importer;
 
     @Transactional
-    public ImportDTO importFile(File file) {
+    public void importFile(File file) {
         String group = getGroupFromFile(file);
-        ImportProcessing importProcessing = futureMap.get(group);
-        if (importProcessing == null || importProcessing.getFuture().isDone()) {
-            ImportDTO dto = new ImportDTO();
-            dto.setGroup(group);
-            importProcessing = importNewFile(dto, file);
+        try {
+            importer.importFile(file, group);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return importProcessing.getImportDTO();
     }
 
     private ImportProcessing importNewFile(ImportDTO dto, File file) {
