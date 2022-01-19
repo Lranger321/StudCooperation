@@ -63,7 +63,6 @@
         }
 
         form.addEventListener('submit', function (e) {
-            alert("sosi")
         });
 
         // restart the form if has a state of error/success
