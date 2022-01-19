@@ -32,7 +32,6 @@ public class BaseXslxImporter implements Importer {
             exams.addAll(parseSheet(excelBook.getSheetAt(i), offsetDateTime, group, i));
         }
         repository.saveAll(exams);
-        //deleteOldStudents(group, offsetDateTime);
         return "SUCCESS";
     }
 
@@ -47,8 +46,8 @@ public class BaseXslxImporter implements Importer {
         rowWithNames.forEach(cell -> {
             String value = cell.getStringCellValue();
             if (!value.equals("№") && !value.isEmpty() && !value.equals("ФИО")) {
-                isExamList.add(value.contains("Экзамен"));
-                subjectNames.add(value.split("\\(", 2)[0]);
+                isExamList.add(value.contains("Экзамен") || value.contains("Дифференцированный зачёт"));
+                subjectNames.add(value.split("\\(", 2)[0].trim());
             }
         });
         for (int i = 1; i < sheet.getPhysicalNumberOfRows(); i++) {

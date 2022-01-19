@@ -7,7 +7,7 @@ import java.util.*;
 
 public interface ExamService {
 
-        Map<String, List<Exam>> getExamsBySubject(String subject);
+        Map<String, List<Exam>> getExamsBySubjectAndSemester(String subject, int semester);
 
         Map<String, Exam> getExamsByGroup(String group);
 

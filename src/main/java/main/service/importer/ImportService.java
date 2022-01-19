@@ -23,8 +23,6 @@ import java.util.concurrent.Future;
 @RequiredArgsConstructor
 public class ImportService {
 
-    private ExecutorService executor = Executors.newCachedThreadPool();
-    private Map<String, ImportProcessing> futureMap = new ConcurrentHashMap<>();
     private final Importer importer;
 
     @Transactional
@@ -37,36 +35,8 @@ public class ImportService {
         }
     }
 
-    private ImportProcessing importNewFile(ImportDTO dto, File file) {
-        dto.setResult("EXECUTING");
-        Future future = executor.submit(() -> {
-                    try {
-                        log.info("Import start. File name: " + file.getName());
-                        String result = importer.importFile(file, dto.getGroup());
-                        dto.setResult(result);
-                        log.info("Import finish. File name: " + file.getName());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        dto.setResult("FAIL");
-                        log.error("Import failed. File name: {}. Error: {}", file.getName(), e.getMessage());
-                    }
-                }
-        );
-        ImportProcessing importProcessing = new ImportProcessing(future, dto);
-        futureMap.put(dto.getGroup(), importProcessing);
-        return importProcessing;
-    }
-
     private String getGroupFromFile(File file) {
         return FilenameUtils.removeExtension(file.getName()).replace("Все_семестровые_журналы_", "");
     }
 
-
-    @AllArgsConstructor
-    @Getter
-    @Setter
-    private static class ImportProcessing {
-        private Future future;
-        private ImportDTO importDTO;
-    }
 }

@@ -9,7 +9,7 @@ import java.util.*;
 @Repository
 public interface ExamRepository extends CrudRepository<Exam, Long> {
 
-    List<Exam> findAllByName(String name);
+    List<Exam> findAllByNameAndSemester(String name, int semester);
 
     List<Exam> findBySemester(int semester);
 }

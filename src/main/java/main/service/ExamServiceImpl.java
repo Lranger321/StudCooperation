@@ -3,7 +3,6 @@ package main.service;
 import lombok.RequiredArgsConstructor;
 import main.dao.entity.Exam;
 import main.dao.repository.ExamRepository;
-import main.dto.ExamDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,8 +16,8 @@ public class ExamServiceImpl implements ExamService {
     private final ExamRepository repository;
 
     @Override
-    public Map<String, List<Exam>> getExamsBySubject(String subject) {
-        return repository.findAllByName(subject).stream()
+    public Map<String, List<Exam>> getExamsBySubjectAndSemester(String subject, int semester) {
+        return repository.findAllByNameAndSemester(subject, semester).stream()
                 .collect(Collectors.groupingBy(Exam::getGroup));
     }
 
