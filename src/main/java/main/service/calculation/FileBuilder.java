@@ -22,6 +22,7 @@ public class FileBuilder {
             builder.createPage(workbook,i);
         }
         File file = new File("result.xlsx");
+
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             workbook.write(fileOutputStream);
