@@ -1,1 +1,1 @@
-web: java -jar target/StudCooperation-1.0-SNAPSHOT.jar
+web: java -jar target/demo-0.0.1-SNAPSHOT.jar
