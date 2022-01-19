@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -21,11 +20,10 @@ public class ImportController {
 
     private final ConverterService service;
 
-    @PostMapping(value = "/api/import/",   produces = "application/xlsx")
-    public RedirectView importFile(@RequestParam MultipartFile[] files) throws IOException {
+    @PostMapping(value = "/api/import/",   produces = MediaType.ALL_VALUE)
+    public @ResponseBody byte[] importFile(@RequestParam MultipartFile[] files) throws IOException {
         File file = service.convertFiles(convertMultiPartToFile(files));
-        System.out.println("file://"+file.getAbsolutePath());
-        return new RedirectView("file://"+file.getAbsolutePath());
+        return IOUtils.toByteArray(new FileInputStream(file));
     }
 
     private List<File> convertMultiPartToFile(MultipartFile[] files) {
