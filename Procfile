@@ -1,1 +1,1 @@
-web: java -jar target/TicTacToe-1.0-SNAPSHOT.jar
+web: java -jar target/StudCooperation-1.0-SNAPSHOT.jar
