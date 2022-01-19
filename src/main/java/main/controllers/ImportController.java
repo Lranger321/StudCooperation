@@ -20,7 +20,7 @@ public class ImportController {
 
     private final ConverterService service;
 
-    @PostMapping(value = "/api/import/",   produces = MediaType.ALL_VALUE)
+    @PostMapping(value = "/api/import/",   produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public @ResponseBody byte[] importFile(@RequestParam MultipartFile[] files) throws IOException {
         File file = service.convertFiles(convertMultiPartToFile(files));
         return IOUtils.toByteArray(new FileInputStream(file));
