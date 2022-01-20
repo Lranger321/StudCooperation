@@ -58,6 +58,7 @@
             });
             form.addEventListener('drop', function (e) {
                 droppedFiles = e.dataTransfer.files; // the files that were dropped
+                document.getElementById("file").files =  e.dataTransfer.files;
                 showFiles(droppedFiles);
             });
         }
